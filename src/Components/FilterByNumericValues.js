@@ -3,30 +3,34 @@ import Button from './Button'
 import FilterColumn from './FilterColumn'
 import FilterComparison from './FilterComparison'
 import FilterValue from './FilterValue'
-import FilterNumber from './FilterValue'
 
 function FilterByNumericValues ({
   filter,
   setFilter,
   disable,
+  index,
+  clickFilter,
   onFilterChange,
   onAddFilterClick
 }) {
-  function handleFilterColumn (value, id) {
-    onFilterChange(value, id)
-  }
+  // function handleFilterColumn (value, id) {
+  //   onFilterChange(value, item, id)
+  // }
 
-  function handleFilterComparison (value, id) {
-    onFilterChange(value, id)
-  }
+  // function handleFilterComparison (value, id) {
+  //   onFilterChange(value, item, id)
+  // }
 
-  function handleFilterValue (value, id) {
-    onFilterChange(value, id)
+  // function handleFilterValue (value, id) {
+  //   onFilterChange(value, item, id)
+  // }
+
+  function handleFilter (value, id) {
+    onFilterChange(value, index, id)
   }
 
   function handleClickFilter () {
-    filter.filters.hasFilter = true
-    setFilter({ ...filter })
+    clickFilter()
   }
 
   function handleClick () {
@@ -37,16 +41,13 @@ function FilterByNumericValues ({
     <>
       <FilterColumn
         filter={filter.column}
-        onFilterColumnChange={handleFilterColumn}
+        onFilterColumnChange={handleFilter}
       />
       <FilterComparison
         filter={filter.comparison}
-        onFilterComparisonChange={handleFilterComparison}
+        onFilterComparisonChange={handleFilter}
       />
-      <FilterNumber
-        filter={filter.value}
-        onFilterValueChange={handleFilterValue}
-      />
+      <FilterValue filter={filter.value} onFilterValueChange={handleFilter} />
       <Button handleClick={handleClickFilter}>Filtrar</Button>
       {disable && <Button handleClick={handleClick}>+</Button>}
     </>

@@ -5,7 +5,7 @@ import GlobalContext from '../GlobalContext'
 import Button from './Button'
 
 function FilterableTable () {
-  const { request, data, loading, error } = React.useContext(GlobalContext)
+  const { request, data } = React.useContext(GlobalContext)
   const [filter, setFilter] = React.useState({
     filters: {
       hasFilter: false,
@@ -24,7 +24,7 @@ function FilterableTable () {
 
   React.useEffect(() => {
     request('https://swapi-trybe.herokuapp.com/api/planets/')
-  }, [])
+  }, [request])
 
   function PreviousPage () {
     request(`${data.previous}`)

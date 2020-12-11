@@ -4,13 +4,10 @@ import SearchBar from './SearchBar'
 
 function Filter ({ filter, setFilter }) {
   const [disable, setDisable] = React.useState(false)
-  const [newFilter, setNewFilter] = React.useState(false)
 
-  function handleFilterChange (value, id) {
-    filter.filters.filterByNumericValues.map(filtro => {
-      filtro[id] = value
-      setFilter({ ...filter })
-    })
+  function handleFilterChange (value, item, id) {
+    filter.filters.filterByNumericValues[item][id] = value
+    setFilter({ ...filter })
   }
 
   function handleFilterTextChange (value) {
@@ -19,7 +16,6 @@ function Filter ({ filter, setFilter }) {
   }
 
   function handleAddFilterClick () {
-    console.log('adicionar novo array')
     filter.filters.filterByNumericValues.push({
       column: '',
       comparison: '',
@@ -28,12 +24,17 @@ function Filter ({ filter, setFilter }) {
     setFilter({ ...filter })
   }
 
+  function handleClickFilter () {
+    filter.filters.hasFilter = true
+    setFilter({ ...filter })
+  }
+
   function handleSubmit (e) {
     e.preventDefault()
   }
 
   React.useEffect(() => {
-    filter.filters.filterByNumericValues.map(filtro => {
+    filter.filters.filterByNumericValues.forEach(filtro => {
       setDisable(() => {
         return (
           filtro.column !== '' &&
@@ -45,13 +46,16 @@ function Filter ({ filter, setFilter }) {
   }, [filter])
 
   function pushNewArray () {
-    return filter.filters.filterByNumericValues.map(filtro => {
+    return filter.filters.filterByNumericValues.map((filtro, i) => {
       return (
         <FilterByNumericValues
+          key={i}
+          index={i}
           onFilterChange={handleFilterChange}
           onAddFilterClick={handleAddFilterClick}
           filter={filtro}
           setFilter={setFilter}
+          clickFilter={handleClickFilter}
           disable={disable}
         />
       )
