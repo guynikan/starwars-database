@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button'
 import FilterByNumericValues from './FilterByNumericValues'
 import SearchBar from './SearchBar'
 
@@ -52,10 +53,7 @@ function Filter ({ filter, setFilter }) {
           key={i}
           index={i}
           onFilterChange={handleFilterChange}
-          onAddFilterClick={handleAddFilterClick}
           filter={filtro}
-          setFilter={setFilter}
-          clickFilter={handleClickFilter}
           disable={disable}
         />
       )
@@ -69,6 +67,8 @@ function Filter ({ filter, setFilter }) {
         onFilterTextChange={handleFilterTextChange}
       />
       {pushNewArray()}
+      <Button handleClick={handleClickFilter}>Filtrar</Button>
+      {disable && <Button handleClick={handleAddFilterClick}>+</Button>}
     </form>
   )
 }
