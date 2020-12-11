@@ -2,11 +2,11 @@ import React from 'react'
 
 function FilterColumn ({ filter, onFilterColumnChange }) {
   function handleFilterColumn ({ target }) {
-    onFilterColumnChange(target.value)
+    onFilterColumnChange(target.value, target.id)
   }
 
   return (
-    <select value={filter} onChange={handleFilterColumn}>
+    <select value={filter} id='column' onChange={handleFilterColumn}>
       <option value='' disabled>
         Coluna
       </option>
