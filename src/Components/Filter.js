@@ -1,38 +1,61 @@
 import React from 'react'
-import Button from './Button'
-import FilterColumn from './FilterColumn'
-import FilterComparison from './FilterComparison'
-import FilterNumber from './FilterValue'
+import FilterByNumericValues from './FilterByNumericValues'
 import SearchBar from './SearchBar'
 
 function Filter ({ filter, setFilter }) {
+  const [disable, setDisable] = React.useState(false)
+  const [newFilter, setNewFilter] = React.useState(false)
+
+  function handleFilterChange (value, id) {
+    filter.filters.filterByNumericValues.map(filtro => {
+      filtro[id] = value
+      setFilter({ ...filter })
+    })
+  }
+
   function handleFilterTextChange (value) {
     filter.filters.filterByName.name = value
     setFilter({ ...filter })
   }
 
-  function handleFilterColumn (value) {
-    filter.filters.filterByNumericValues.column = value
-    setFilter({ ...filter })
-  }
-
-  function handleFilterComparison (value) {
-    filter.filters.filterByNumericValues.comparison = value
-    setFilter({ ...filter })
-  }
-
-  function handleFilterValue (value) {
-    filter.filters.filterByNumericValues.value = value
-    setFilter({ ...filter })
-  }
-
-  function handleClick () {
-    filter.filters.hasFilter = true
+  function handleAddFilterClick () {
+    console.log('adicionar novo array')
+    filter.filters.filterByNumericValues.push({
+      column: '',
+      comparison: '',
+      value: ''
+    })
     setFilter({ ...filter })
   }
 
   function handleSubmit (e) {
     e.preventDefault()
+  }
+
+  React.useEffect(() => {
+    filter.filters.filterByNumericValues.map(filtro => {
+      setDisable(() => {
+        return (
+          filtro.column !== '' &&
+          filtro.comparison !== '' &&
+          filtro.value !== ''
+        )
+      })
+    })
+  }, [filter])
+
+  function pushNewArray () {
+    return filter.filters.filterByNumericValues.map(filtro => {
+      return (
+        <FilterByNumericValues
+          onFilterChange={handleFilterChange}
+          onAddFilterClick={handleAddFilterClick}
+          filter={filtro}
+          setFilter={setFilter}
+          disable={disable}
+        />
+      )
+    })
   }
 
   return (
@@ -41,19 +64,7 @@ function Filter ({ filter, setFilter }) {
         filter={filter.filters.filterByName.name}
         onFilterTextChange={handleFilterTextChange}
       />
-      <FilterColumn
-        filter={filter.filters.filterByNumericValues.column}
-        onFilterColumnChange={handleFilterColumn}
-      />
-      <FilterComparison
-        filter={filter.filters.filterByNumericValues.comparison}
-        onFilterComparisonChange={handleFilterComparison}
-      />
-      <FilterNumber
-        filter={filter.filters.filterByNumericValues.value}
-        onFilterValueChange={handleFilterValue}
-      />
-      <Button handleClick={handleClick}>Filtrar</Button>
+      {pushNewArray()}
     </form>
   )
 }
