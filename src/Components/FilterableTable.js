@@ -8,6 +8,7 @@ function FilterableTable () {
   const { request, data, loading, error } = React.useContext(GlobalContext)
   const [filter, setFilter] = React.useState({
     filters: {
+      hasFilter: false,
       filterByName: {
         name: ''
       },

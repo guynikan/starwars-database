@@ -10,9 +10,9 @@ function FilterComparison ({ filter, onFilterComparisonChange }) {
       <option value='' disabled>
         Condição
       </option>
-      <option value='maior que'>Maior que</option>
-      <option value='menor que'>Menor que</option>
-      <option value='igual a'>Igual a</option>
+      <option value='==='>Igual a</option>
+      <option value='<'>Menor que</option>
+      <option value='>'>Maior que</option>
     </select>
   )
 }

@@ -26,8 +26,17 @@ function Filter ({ filter, setFilter }) {
     setFilter({ ...filter })
   }
 
+  function handleClick () {
+    filter.filters.hasFilter = true
+    setFilter({ ...filter })
+  }
+
+  function handleSubmit (e) {
+    e.preventDefault()
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <SearchBar
         filter={filter.filters.filterByName.name}
         onFilterTextChange={handleFilterTextChange}
@@ -44,7 +53,7 @@ function Filter ({ filter, setFilter }) {
         filter={filter.filters.filterByNumericValues.value}
         onFilterValueChange={handleFilterValue}
       />
-      <Button>Filtrar</Button>
+      <Button handleClick={handleClick}>Filtrar</Button>
     </form>
   )
 }
