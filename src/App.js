@@ -1,7 +1,13 @@
 import React from 'react'
+import FilterableTable from './Components/FilterableTable'
+import { GlobalStorage } from './GlobalContext'
 
 function App () {
-  return <div>React</div>
+  return (
+    <GlobalStorage>
+      <FilterableTable />
+    </GlobalStorage>
+  )
 }
 
 export default App
