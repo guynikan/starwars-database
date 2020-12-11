@@ -2,11 +2,11 @@ import React from 'react'
 
 function FilterComparison ({ filter, onFilterComparisonChange }) {
   function handleFilterComparison ({ target }) {
-    onFilterComparisonChange(target.value)
+    onFilterComparisonChange(target.value, target.id)
   }
 
   return (
-    <select value={filter} onChange={handleFilterComparison}>
+    <select value={filter} id='comparison' onChange={handleFilterComparison}>
       <option value='' disabled>
         Condição
       </option>
