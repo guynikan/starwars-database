@@ -12,11 +12,13 @@ function FilterableTable () {
       filterByName: {
         name: ''
       },
-      filterByNumericValues: {
-        column: '',
-        comparison: '',
-        value: ''
-      }
+      filterByNumericValues: [
+        {
+          column: '',
+          comparison: '',
+          value: ''
+        }
+      ]
     }
   })
 
