@@ -4,9 +4,19 @@ import FilterColumn from './FilterColumn'
 import FilterComparison from './FilterComparison'
 import FilterValue from './FilterValue'
 
-function FilterByNumericValues ({ filter, index, onFilterChange, column }) {
+function FilterByNumericValues ({
+  filter,
+  index,
+  onFilterChange,
+  onClickRemoveFilter,
+  column
+}) {
   function handleFilter (value, id) {
     onFilterChange(value, index, id)
+  }
+
+  function removeFilter () {
+    onClickRemoveFilter(index)
   }
 
   return (
@@ -21,6 +31,7 @@ function FilterByNumericValues ({ filter, index, onFilterChange, column }) {
         onFilterComparisonChange={handleFilter}
       />
       <FilterValue filter={filter.value} onFilterValueChange={handleFilter} />
+      <button onClick={removeFilter}>X</button>
     </FiltersContainer>
   )
 }

@@ -27,7 +27,11 @@ function Filter ({ filter, setFilter }) {
   }
 
   function handleClickFilter () {
-    filter.filters.hasFilter = true
+    setFilter({ ...filter })
+  }
+
+  function removeFilter (index) {
+    filter.filters.filterByNumericValues.splice(index, 1)
     setFilter({ ...filter })
   }
 
@@ -52,12 +56,12 @@ function Filter ({ filter, setFilter }) {
       let column = array.map(({ column }) => {
         return column
       })
-
       return (
         <FilterByNumericValues
           key={i}
           index={i}
           onFilterChange={handleFilterChange}
+          onClickRemoveFilter={removeFilter}
           filter={filtro}
           disable={disable}
           column={column}
