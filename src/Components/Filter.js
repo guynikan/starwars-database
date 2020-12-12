@@ -48,7 +48,11 @@ function Filter ({ filter, setFilter }) {
   }, [filter])
 
   function pushNewArray () {
-    return filter.filters.filterByNumericValues.map((filtro, i) => {
+    return filter.filters.filterByNumericValues.map((filtro, i, array) => {
+      let column = array.map(({ column }) => {
+        return column
+      })
+
       return (
         <FilterByNumericValues
           key={i}
@@ -56,6 +60,7 @@ function Filter ({ filter, setFilter }) {
           onFilterChange={handleFilterChange}
           filter={filtro}
           disable={disable}
+          column={column}
         />
       )
     })

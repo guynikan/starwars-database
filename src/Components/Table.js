@@ -8,7 +8,6 @@ function Table ({ planets, filter }) {
     const regex = new RegExp(wordToMatch, 'gi')
     return planet.name.search(regex)
   }
-  console.log(planets)
   function findMatches (filter, planet) {
     let result
     filter.filters.filterByNumericValues.forEach(filtro => {

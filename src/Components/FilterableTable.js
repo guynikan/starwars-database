@@ -26,6 +26,7 @@ function FilterableTable () {
   })
 
   React.useEffect(() => {
+    console.log('requisitou')
     request('https://swapi-trybe.herokuapp.com/api/planets/')
   }, [])
 

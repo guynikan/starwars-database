@@ -1,7 +1,7 @@
 import React from 'react'
 import Select from '../Styled/Select'
 
-function FilterColumn ({ filter, onFilterColumnChange }) {
+function FilterColumn ({ filter, onFilterColumnChange, column }) {
   function handleFilterColumn ({ target }) {
     onFilterColumnChange(target.value, target.id)
   }
@@ -11,11 +11,27 @@ function FilterColumn ({ filter, onFilterColumnChange }) {
       <option value='' disabled>
         Column
       </option>
-      <option value='population'>Population</option>
-      <option value='diameter'>Diameter</option>
-      <option value='rotation_period'>Rotation Period</option>
-      <option value='orbital_period'>Orbital Period</option>
-      <option value='surface_water'>Surface Water</option>
+      <option disabled={column.includes('population')} value='population'>
+        Population
+      </option>
+      <option disabled={column.includes('diameter')} value='diameter'>
+        Diameter
+      </option>
+      <option
+        disabled={column.includes('rotation_period')}
+        value='rotation_period'
+      >
+        Rotation Period
+      </option>
+      <option
+        disabled={column.includes('orbital_period')}
+        value='orbital_period'
+      >
+        Orbital Period
+      </option>
+      <option disabled={column.includes('surface_water')} value='surface_water'>
+        Surface Water
+      </option>
     </Select>
   )
 }

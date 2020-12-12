@@ -4,7 +4,7 @@ import FilterColumn from './FilterColumn'
 import FilterComparison from './FilterComparison'
 import FilterValue from './FilterValue'
 
-function FilterByNumericValues ({ filter, index, onFilterChange }) {
+function FilterByNumericValues ({ filter, index, onFilterChange, column }) {
   function handleFilter (value, id) {
     onFilterChange(value, index, id)
   }
@@ -14,6 +14,7 @@ function FilterByNumericValues ({ filter, index, onFilterChange }) {
       <FilterColumn
         filter={filter.column}
         onFilterColumnChange={handleFilter}
+        column={column}
       />
       <FilterComparison
         filter={filter.comparison}
