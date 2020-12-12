@@ -3,6 +3,9 @@ import Filter from './Filter'
 import Table from './Table'
 import GlobalContext from '../GlobalContext'
 import Button from './Button'
+import Container from '../Styled/Container'
+import Pagination from '../Styled/Pagination'
+import Title from '../Styled/Title'
 
 function FilterableTable () {
   const { request, data } = React.useContext(GlobalContext)
@@ -24,7 +27,7 @@ function FilterableTable () {
 
   React.useEffect(() => {
     request('https://swapi-trybe.herokuapp.com/api/planets/')
-  }, [request])
+  }, [])
 
   function PreviousPage () {
     request(`${data.previous}`)
@@ -36,16 +39,19 @@ function FilterableTable () {
 
   return (
     data && (
-      <div>
+      <Container>
+        <Title>DEATH STAR 2.0</Title>
         <Filter filter={filter} setFilter={setFilter} />
         <Table planets={data} filter={filter} setFilter={setFilter} />
-        <Button handleClick={PreviousPage} disabled={!data.previous}>
-          Anterior
-        </Button>
-        <Button handleClick={NextPage} disabled={!data.next}>
-          Próxima
-        </Button>
-      </div>
+        <Pagination>
+          <Button handleClick={PreviousPage} disabled={!data.previous}>
+            Previous
+          </Button>
+          <Button handleClick={NextPage} disabled={!data.next}>
+            Next
+          </Button>
+        </Pagination>
+      </Container>
     )
   )
 }

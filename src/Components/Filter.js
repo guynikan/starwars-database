@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from '../Styled/Form'
 import Button from './Button'
 import FilterByNumericValues from './FilterByNumericValues'
 import SearchBar from './SearchBar'
@@ -61,15 +62,15 @@ function Filter ({ filter, setFilter }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <SearchBar
         filter={filter.filters.filterByName.name}
         onFilterTextChange={handleFilterTextChange}
       />
       {pushNewArray()}
-      <Button handleClick={handleClickFilter}>Filtrar</Button>
+      <Button handleClick={handleClickFilter}>Filter</Button>
       {disable && <Button handleClick={handleAddFilterClick}>+</Button>}
-    </form>
+    </Form>
   )
 }
 

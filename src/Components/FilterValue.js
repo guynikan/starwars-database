@@ -1,12 +1,14 @@
 import React from 'react'
+import { NumericInput } from '../Styled/Input'
 
 function FilterValue ({ filter, onFilterValueChange }) {
   function handleFilterValue ({ target }) {
     onFilterValueChange(target.value, target.id)
   }
   return (
-    <input
+    <NumericInput
       id='value'
+      placeholder='Enter numeric value'
       type='number'
       value={filter}
       onChange={handleFilterValue}

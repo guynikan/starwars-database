@@ -1,12 +1,14 @@
 import React from 'react'
 import TableHeader from './TableHeader'
 import TableRow from './TableRow'
+import { StyledTable } from '../Styled/Table'
 
 function Table ({ planets, filter }) {
   function findNameMatch (wordToMatch, planet) {
     const regex = new RegExp(wordToMatch, 'gi')
     return planet.name.search(regex)
   }
+  console.log(planets)
   function findMatches (filter, planet) {
     let result
     filter.filters.filterByNumericValues.forEach(filtro => {
@@ -29,17 +31,19 @@ function Table ({ planets, filter }) {
   }
 
   return (
-    <table>
+    <StyledTable>
       <TableHeader />
-      {planets.results.map(planet => {
-        if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
-          return null
-        if (filter.filters.hasFilter)
-          if (!findMatches(filter, planet)) return null
+      <tbody>
+        {planets.results.map(planet => {
+          if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
+            return null
+          if (filter.filters.hasFilter)
+            if (!findMatches(filter, planet)) return null
 
-        return <TableRow planet={planet} key={planet.name} />
-      })}
-    </table>
+          return <TableRow planet={planet} key={planet.name} />
+        })}
+      </tbody>
+    </StyledTable>
   )
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import Select from '../Styled/Select'
 
 function FilterComparison ({ filter, onFilterComparisonChange }) {
   function handleFilterComparison ({ target }) {
@@ -6,14 +7,14 @@ function FilterComparison ({ filter, onFilterComparisonChange }) {
   }
 
   return (
-    <select value={filter} id='comparison' onChange={handleFilterComparison}>
+    <Select value={filter} id='comparison' onChange={handleFilterComparison}>
       <option value='' disabled>
-        Condição
+        Comparison
       </option>
-      <option value='==='>Igual a</option>
-      <option value='<'>Menor que</option>
-      <option value='>'>Maior que</option>
-    </select>
+      <option value='==='>Equal to</option>
+      <option value='<'>Less than</option>
+      <option value='>'>Greater than</option>
+    </Select>
   )
 }
 

@@ -1,10 +1,11 @@
 import React from 'react'
+import { StyledButton } from '../Styled/Button'
 
 function Button ({ children, handleClick, disabled }) {
   return (
-    <button disabled={disabled} onClick={handleClick}>
+    <StyledButton disabled={disabled} onClick={handleClick}>
       {children}
-    </button>
+    </StyledButton>
   )
 }
 

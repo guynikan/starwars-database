@@ -1,4 +1,5 @@
 import React from 'react'
+import Select from '../Styled/Select'
 
 function FilterColumn ({ filter, onFilterColumnChange }) {
   function handleFilterColumn ({ target }) {
@@ -6,16 +7,16 @@ function FilterColumn ({ filter, onFilterColumnChange }) {
   }
 
   return (
-    <select value={filter} id='column' onChange={handleFilterColumn}>
+    <Select value={filter} id='column' onChange={handleFilterColumn}>
       <option value='' disabled>
-        Coluna
+        Column
       </option>
-      <option value='population'>População</option>
-      <option value='diameter'>Diâmetro</option>
-      <option value='rotation_period'>Período de rotação</option>
-      <option value='orbital_period'>Período orbital</option>
-      <option value='surface_water'>Água na superfície</option>
-    </select>
+      <option value='population'>Population</option>
+      <option value='diameter'>Diameter</option>
+      <option value='rotation_period'>Rotation Period</option>
+      <option value='orbital_period'>Orbital Period</option>
+      <option value='surface_water'>Surface Water</option>
+    </Select>
   )
 }
 

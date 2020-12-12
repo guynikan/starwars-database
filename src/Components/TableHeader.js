@@ -1,24 +1,25 @@
 import React from 'react'
+import TableHead from '../Styled/TableHead'
 
 function TableHeader () {
   return (
-    <thead>
+    <TableHead>
       <tr>
-        <th>Nome</th>
-        <th>População</th>
-        <th>Diâmetro</th>
-        <th>Clima</th>
-        <th>Gravidade</th>
-        <th>Período de rotação</th>
-        <th>Período orbital</th>
-        <th>Água na superfície</th>
-        <th>Terreno</th>
+        <th>Name</th>
+        <th>Population</th>
+        <th>Diameter</th>
+        <th>Climate</th>
+        <th>Gravity</th>
+        <th>Rotation Period</th>
+        <th>Orbital Period</th>
+        <th>Surface Water</th>
+        <th>Terrain</th>
         {/* <th>Filmes</th> */}
-        <th>Data de criação</th>
-        <th>Editado em</th>
+        <th>Created</th>
+        <th>Edited</th>
         <th>Url</th>
       </tr>
-    </thead>
+    </TableHead>
   )
 }
 

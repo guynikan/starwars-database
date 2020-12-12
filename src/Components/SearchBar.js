@@ -1,13 +1,14 @@
 import React from 'react'
+import { SearchInput } from '../Styled/Input'
 
 function SearchBar ({ filter, onFilterTextChange }) {
   function handleFilterTextChange ({ target }) {
     onFilterTextChange(target.value)
   }
   return (
-    <input
+    <SearchInput
       type='text'
-      placeholder='Pesquisar...'
+      placeholder='Search...'
       value={filter}
       onChange={handleFilterTextChange}
     />
