@@ -41,12 +41,13 @@ function Filter ({ filter, setFilter }) {
   }
 
   React.useEffect(() => {
-    filter.filters.filterByNumericValues.forEach(filtro => {
+    filter.filters.filterByNumericValues.forEach((filterItem, i, array) => {
       setDisable(() => {
         return (
-          filtro.column !== '' &&
-          filtro.comparison !== '' &&
-          filtro.value !== ''
+          filterItem.column !== '' &&
+          filterItem.comparison !== '' &&
+          filterItem.value !== '' &&
+          array.length < 5
         )
       })
     })
