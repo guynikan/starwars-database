@@ -8,22 +8,32 @@ function Table ({ planets, filter }) {
     const regex = new RegExp(wordToMatch, 'gi')
     return planet.name.search(regex)
   }
-  function findMatches (filter, planet) {
-    let result
-    filter.filters.filterByNumericValues.forEach(filtro => {
-      switch (filtro.comparison) {
-        case '===':
-          result = Number(planet[filtro.column]) === Number(filtro.value)
-          break
-        case '>':
-          result = Number(planet[filtro.column]) > Number(filtro.value)
-          break
-        case '<':
-          result = Number(planet[filtro.column]) < Number(filtro.value)
-          break
 
-        default:
-          result = false
+  function hasFilter (filter) {
+    return !!(filter.column && filter.comparison && filter.value)
+  }
+
+  function findMatches (filter, planet) {
+    let result = true
+    filter.filters.filterByNumericValues.forEach(filterItem => {
+      if (hasFilter(filterItem)) {
+        switch (filterItem.comparison) {
+          case '===':
+            result =
+              Number(planet[filterItem.column]) === Number(filterItem.value)
+            break
+          case '>':
+            result =
+              Number(planet[filterItem.column]) > Number(filterItem.value)
+            break
+          case '<':
+            result =
+              Number(planet[filterItem.column]) < Number(filterItem.value)
+            break
+
+          default:
+            result = false
+        }
       }
     })
     return result
