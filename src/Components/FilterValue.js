@@ -7,6 +7,7 @@ function FilterValue ({ filter, onFilterValueChange }) {
   }
   return (
     <NumericInput
+      required
       id='value'
       placeholder='Enter numeric value'
       type='number'

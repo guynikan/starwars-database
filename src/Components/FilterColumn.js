@@ -7,7 +7,7 @@ function FilterColumn ({ filter, onFilterColumnChange, column }) {
   }
 
   return (
-    <Select value={filter} id='column' onChange={handleFilterColumn}>
+    <Select required value={filter} id='column' onChange={handleFilterColumn}>
       <option value='' disabled>
         Column
       </option>

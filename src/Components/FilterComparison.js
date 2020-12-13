@@ -7,7 +7,12 @@ function FilterComparison ({ filter, onFilterComparisonChange }) {
   }
 
   return (
-    <Select value={filter} id='comparison' onChange={handleFilterComparison}>
+    <Select
+      required
+      value={filter}
+      id='comparison'
+      onChange={handleFilterComparison}
+    >
       <option value='' disabled>
         Comparison
       </option>
