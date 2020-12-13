@@ -1,24 +1,31 @@
 import React from 'react'
 
 function useFetch () {
-  const [data, setData] = React.useState(null)
+  const [data, setData] = React.useState([])
   const [error, setError] = React.useState(null)
   const [loading, setLoading] = React.useState(null)
 
-  async function request (url, options) {
+  async function requestRecursively (url) {
     setLoading(true)
-    await fetch(url, options)
-      .then(response => response.json())
-      .then(json => setData(json))
-      .catch(error => setError(error))
+    const response = await fetch(url)
+    let dados = await response.json()
+
+    if (dados.next) {
+      dados.results = dados.results.concat(
+        await requestRecursively(`${dados.next}`)
+      )
+    }
     setLoading(false)
+
+    return dados.results
   }
+
   return {
+    requestRecursively,
     data,
     setData,
     error,
-    loading,
-    request
+    loading
   }
 }
 
