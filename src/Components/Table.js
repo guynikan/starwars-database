@@ -1,9 +1,12 @@
 import React from 'react'
+import GlobalContext from '../GlobalContext'
 import TableHeader from './TableHeader'
 import TableRow from './TableRow'
 import { StyledTable } from '../Styled/Table'
 
-function Table ({ planets, filter }) {
+function Table ({ filter }) {
+  const { data } = React.useContext(GlobalContext)
+
   function findNameMatch (wordToMatch, planet) {
     const regex = new RegExp(wordToMatch, 'gi')
     return planet.name.search(regex)
@@ -43,7 +46,7 @@ function Table ({ planets, filter }) {
     <StyledTable>
       <TableHeader />
       <tbody>
-        {planets.results.map(planet => {
+        {data.results.map(planet => {
           if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
             return null
           if (filter.filters.hasFilter)
