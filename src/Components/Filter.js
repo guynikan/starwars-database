@@ -13,6 +13,7 @@ function Filter ({ filter, setFilter }) {
   }
 
   function handleFilterTextChange (value) {
+    filter.filters.hasFilter = true
     filter.filters.filterByName.name = value
     setFilter({ ...filter })
   }
