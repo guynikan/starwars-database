@@ -27,6 +27,7 @@ function Filter ({ filter, setFilter }) {
   }
 
   function handleClickFilter () {
+    filter.filters.hasFilter = true
     setFilter({ ...filter })
   }
 
@@ -63,7 +64,6 @@ function Filter ({ filter, setFilter }) {
           onFilterChange={handleFilterChange}
           onClickRemoveFilter={removeFilter}
           filter={filtro}
-          disable={disable}
           column={column}
         />
       )
@@ -77,7 +77,9 @@ function Filter ({ filter, setFilter }) {
         onFilterTextChange={handleFilterTextChange}
       />
       {pushNewArray()}
-      <Button handleClick={handleClickFilter}>Filter</Button>
+      <Button disabled={!disable} handleClick={handleClickFilter}>
+        Filter
+      </Button>
       {disable && <Button handleClick={handleAddFilterClick}>+</Button>}
     </Form>
   )
