@@ -5,7 +5,9 @@ import TableRow from './TableRow'
 import { StyledTable } from '../Styled/Table'
 
 function Table ({ filter }) {
-  const { data } = React.useContext(GlobalContext)
+  const { data, offset, PER_PAGE, setPageCount } = React.useContext(
+    GlobalContext
+  )
 
   function findNameMatch (wordToMatch, planet) {
     const regex = new RegExp(wordToMatch, 'gi')
@@ -42,19 +44,18 @@ function Table ({ filter }) {
     return result
   }
 
+  function renderData () {
+    debugger
+    const slice = data.slice(offset, offset + PER_PAGE)
+    setPageCount(Math.ceil(data.length / PER_PAGE))
+
+    return slice.map(planet => <TableRow planet={planet} key={planet.name} />)
+  }
+
   return (
     <StyledTable>
       <TableHeader />
-      <tbody>
-        {data.results.map(planet => {
-          if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
-            return null
-          if (filter.filters.hasFilter)
-            if (!findMatches(filter, planet)) return null
-
-          return <TableRow planet={planet} key={planet.name} />
-        })}
-      </tbody>
+      <tbody>{renderData()}</tbody>
     </StyledTable>
   )
 }
