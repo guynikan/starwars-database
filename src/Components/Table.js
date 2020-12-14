@@ -52,29 +52,26 @@ function Table () {
     })
   }
 
-  function renderData () {
-    const slice = data.slice(offset, offset + PER_PAGE)
+  function renderTableRows () {
     setPageCount(Math.ceil(data.length / PER_PAGE))
+    const slice = data
+      .filter(planet => {
+        if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
+          return null
+        if (filter.filters.hasFilter)
+          if (!findMatches(filter, planet)) return null
+
+        return planet
+      })
+      .slice(offset, offset + PER_PAGE)
 
     return slice.map(planet => <TableRow planet={planet} key={planet.name} />)
   }
 
-  function renderFilteringData () {
-    return data.map(planet => {
-      if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
-        return null
-      if (filter.filters.hasFilter)
-        if (!findMatches(filter, planet)) return null
-
-      return <TableRow planet={planet} key={planet.name} />
-    })
-  }
   return (
     <StyledTable>
       <TableHeader />
-      <tbody>
-        {filter.filters.hasFilter ? renderFilteringData() : renderData()}
-      </tbody>
+      <tbody>{renderTableRows()}</tbody>
     </StyledTable>
   )
 }
