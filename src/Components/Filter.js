@@ -55,9 +55,18 @@ function Filter ({ filter, setFilter }) {
   }, [filter])
 
   React.useEffect(() => {
-    if (!filter.filters.filterByName.name) filter.filters.hasFilter = false
-    setFilter({ ...filter })
+    if (!filter.filters.filterByName.name) {
+      filter.filters.hasFilter = false
+      setFilter({ ...filter })
+    }
   }, [filter.filters.filterByName.name])
+
+  React.useEffect(() => {
+    if (!filter.filters.filterByNumericValues.length) {
+      filter.filters.hasFilter = false
+      setFilter({ ...filter })
+    }
+  }, [filter.filters.filterByNumericValues.length])
 
   function pushNewArray () {
     return filter.filters.filterByNumericValues.map((filtro, i, array) => {
