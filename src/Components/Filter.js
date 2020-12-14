@@ -8,6 +8,7 @@ function Filter ({ filter, setFilter }) {
   const [disable, setDisable] = React.useState(false)
 
   function handleFilterChange (value, item, id) {
+    filter.filters.hasFilter = false
     filter.filters.filterByNumericValues[item][id] = value
     setFilter({ ...filter })
   }
