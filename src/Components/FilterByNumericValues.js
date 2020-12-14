@@ -29,7 +29,7 @@ function FilterByNumericValues ({ index, column, filter }) {
         onFilterComparisonChange={handleFilter}
       />
       <FilterValue filter={filter.value} onFilterValueChange={handleFilter} />
-      <Button onClick={handleRemoveFilter}>X</Button>
+      <Button handleClick={handleRemoveFilter}>X</Button>
     </StyledFiltersContainer>
   )
 }
