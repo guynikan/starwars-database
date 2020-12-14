@@ -1,12 +1,10 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate'
-import '../Styled/App.css'
 import Filter from './Filter'
 import Table from './Table'
 import GlobalContext from '../GlobalContext'
-import Button from './Button'
 import Container from '../Styled/Container'
-import Pagination from '../Styled/Pagination'
+import StyledPaginateContainer from '../Styled/StyledPaginateContainer'
 import Title from '../Styled/Title'
 
 function FilterableTable () {
@@ -41,14 +39,6 @@ function FilterableTable () {
     )
   }, [offset])
 
-  // function PreviousPage () {
-  //   request(`${data.previous}`)
-  // }
-
-  // function NextPage () {
-  //   request(`${data.next}`)
-  // }
-
   function handlePageClick ({ selected: selectedPage }) {
     debugger
     setCurrentPage(selectedPage)
@@ -59,7 +49,7 @@ function FilterableTable () {
       <Title>DEATH STAR 2.0</Title>
       <Filter filter={filter} setFilter={setFilter} />
       <Table filter={filter} setFilter={setFilter} />
-      <Pagination>
+      <StyledPaginateContainer>
         <ReactPaginate
           previousLabel={'prev'}
           nextLabel={'next'}
@@ -73,7 +63,7 @@ function FilterableTable () {
           subContainerClassName={'pages pagination'}
           activeClassName={'active'}
         />
-      </Pagination>
+      </StyledPaginateContainer>
     </Container>
   )
 }
