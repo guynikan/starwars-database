@@ -1,13 +1,13 @@
 import React from 'react'
-import GlobalContext from '../GlobalContext'
 import TableHeader from './TableHeader'
 import TableRow from './TableRow'
 import { StyledTable } from '../Styled/Table'
+import PaginateContext from '../Context/PaginateStore'
+import DataContext from '../Context/DataStore'
 
 function Table ({ filter }) {
-  const { data, offset, PER_PAGE, setPageCount } = React.useContext(
-    GlobalContext
-  )
+  const { data } = React.useContext(DataContext)
+  const { offset, PER_PAGE, setPageCount } = React.useContext(PaginateContext)
 
   function findNameMatch (wordToMatch, planet) {
     const regex = new RegExp(wordToMatch, 'gi')

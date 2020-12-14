@@ -1,12 +1,15 @@
 import React from 'react'
 import FilterableTable from './Components/FilterableTable'
-import { GlobalStorage } from './GlobalContext'
+import { DataStore } from './Context/DataStore'
+import { PaginateStore } from './Context/PaginateStore'
 
 function App () {
   return (
-    <GlobalStorage>
-      <FilterableTable />
-    </GlobalStorage>
+    <DataStore>
+      <PaginateStore>
+        <FilterableTable />
+      </PaginateStore>
+    </DataStore>
   )
 }
 

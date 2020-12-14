@@ -2,19 +2,18 @@ import React from 'react'
 import ReactPaginate from 'react-paginate'
 import Filter from './Filter'
 import Table from './Table'
-import GlobalContext from '../GlobalContext'
 import Container from '../Styled/Container'
 import StyledPaginateContainer from '../Styled/StyledPaginateContainer'
 import Title from '../Styled/Title'
+import PaginateContext from '../Context/PaginateStore'
+import DataContext from '../Context/DataStore'
 
 function FilterableTable () {
-  const {
-    requestRecursively,
-    setData,
-    offset,
-    setCurrentPage,
-    pageCount
-  } = React.useContext(GlobalContext)
+  const { requestRecursively, setData } = React.useContext(DataContext)
+
+  const { offset, setCurrentPage, pageCount } = React.useContext(
+    PaginateContext
+  )
 
   const [filter, setFilter] = React.useState({
     filters: {
