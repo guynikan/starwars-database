@@ -19,29 +19,36 @@ function Table ({ filter }) {
   }
 
   function findMatches (filter, planet) {
-    let result = true
+    let result = [true]
+
     filter.filters.filterByNumericValues.forEach(filterItem => {
+      debugger
       if (hasFilter(filterItem)) {
         switch (filterItem.comparison) {
           case '===':
-            result =
+            result.push(
               Number(planet[filterItem.column]) === Number(filterItem.value)
+            )
             break
           case '>':
-            result =
+            result.push(
               Number(planet[filterItem.column]) > Number(filterItem.value)
+            )
             break
           case '<':
-            result =
+            result.push(
               Number(planet[filterItem.column]) < Number(filterItem.value)
+            )
             break
 
           default:
-            result = false
+            result.push(false)
         }
       }
     })
-    return result
+    return result.reduce((acc, curr) => {
+      return acc && curr
+    })
   }
 
   function renderData () {
