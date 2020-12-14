@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
-export const StyledButton = styled.button`
+export default styled.select`
   flex: 1;
+  width: 100%;
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
   margin: 10px 10px;
   box-shadow: 2px 2px 2px #575757;
-  background: whitesmoke;
-  font-weight: bold;
-  font-size: 1.125em;
+  color: #252525;
   cursor: pointer;
 `

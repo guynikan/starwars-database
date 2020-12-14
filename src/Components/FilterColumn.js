@@ -1,13 +1,22 @@
 import React from 'react'
-import Select from '../Styled/Select'
+import StyledSelect from '../Styled/StyledSelect'
 
-function FilterColumn ({ filter, onFilterColumnChange, column }) {
+function FilterColumn ({ onFilterColumnChange, filter, column }) {
+  const id = React.useRef()
+
   function handleFilterColumn ({ target }) {
+    debugger
     onFilterColumnChange(target.value, target.id)
   }
 
   return (
-    <Select required value={filter} id='column' onChange={handleFilterColumn}>
+    <StyledSelect
+      required
+      value={filter}
+      id='column'
+      ref={id}
+      onChange={handleFilterColumn}
+    >
       <option value='' disabled>
         Column
       </option>
@@ -32,7 +41,7 @@ function FilterColumn ({ filter, onFilterColumnChange, column }) {
       <option disabled={column.includes('surface_water')} value='surface_water'>
         Surface Water
       </option>
-    </Select>
+    </StyledSelect>
   )
 }
 

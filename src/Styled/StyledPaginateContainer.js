@@ -13,7 +13,8 @@ export default styled.div`
     & > li {
       & > a {
         padding: 5px 10px;
-        border: 1px solid #575757;
+        /* border: 1px solid #575757; */
+        border-radius: 5px;
         cursor: pointer;
         box-shadow: 2px 2px 2px #575757;
         &:hover,

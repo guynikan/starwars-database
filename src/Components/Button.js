@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledButton } from '../Styled/Button'
+import StyledButton from '../Styled/StyledButton'
 
 function Button ({ children, handleClick, disabled }) {
   return (

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Table = styled.table`
+export default styled.table`
   margin: 0 auto;
   border-radius: 5px;
   background: whitesmoke;
@@ -19,5 +19,3 @@ export const Table = styled.table`
     background: #e6e6e6;
   }
 `
-
-export const StyledTable = styled(Table)``

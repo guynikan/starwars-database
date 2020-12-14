@@ -1,13 +1,15 @@
 import React from 'react'
 import TableHeader from './TableHeader'
 import TableRow from './TableRow'
-import { StyledTable } from '../Styled/Table'
+import FilterContext from '../Context/FilterStore'
 import PaginateContext from '../Context/PaginateStore'
 import DataContext from '../Context/DataStore'
+import StyledTable from '../Styled/StyledTable'
 
-function Table ({ filter }) {
+function Table () {
   const { data } = React.useContext(DataContext)
   const { offset, PER_PAGE, setPageCount } = React.useContext(PaginateContext)
+  const { filter } = React.useContext(FilterContext)
 
   function findNameMatch (wordToMatch, planet) {
     const regex = new RegExp(wordToMatch, 'gi')
@@ -22,7 +24,6 @@ function Table ({ filter }) {
     let result = [true]
 
     filter.filters.filterByNumericValues.forEach(filterItem => {
-      debugger
       if (hasFilter(filterItem)) {
         switch (filterItem.comparison) {
           case '===':
@@ -52,7 +53,6 @@ function Table ({ filter }) {
   }
 
   function renderData () {
-    debugger
     const slice = data.slice(offset, offset + PER_PAGE)
     setPageCount(Math.ceil(data.length / PER_PAGE))
 
@@ -60,7 +60,6 @@ function Table ({ filter }) {
   }
 
   function renderFilteringData () {
-    // debugger
     return data.map(planet => {
       if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
         return null

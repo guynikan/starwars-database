@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from '../Styled/Select'
+import StyledSelect from '../Styled/StyledSelect'
 
 function FilterComparison ({ filter, onFilterComparisonChange }) {
   function handleFilterComparison ({ target }) {
@@ -7,7 +7,7 @@ function FilterComparison ({ filter, onFilterComparisonChange }) {
   }
 
   return (
-    <Select
+    <StyledSelect
       required
       value={filter}
       id='comparison'
@@ -19,7 +19,7 @@ function FilterComparison ({ filter, onFilterComparisonChange }) {
       <option value='==='>Equal to</option>
       <option value='<'>Less than</option>
       <option value='>'>Greater than</option>
-    </Select>
+    </StyledSelect>
   )
 }
 

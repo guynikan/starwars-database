@@ -1,5 +1,5 @@
 import React from 'react'
-import { NumericInput } from '../Styled/Input'
+import { NumericInput } from '../Styled/StyledInput'
 
 function FilterValue ({ filter, onFilterValueChange }) {
   function handleFilterValue ({ target }) {

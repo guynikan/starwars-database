@@ -2,11 +2,12 @@ import React from 'react'
 import ReactPaginate from 'react-paginate'
 import Filter from './Filter'
 import Table from './Table'
-import Container from '../Styled/Container'
-import StyledPaginateContainer from '../Styled/StyledPaginateContainer'
-import Title from '../Styled/Title'
 import PaginateContext from '../Context/PaginateStore'
 import DataContext from '../Context/DataStore'
+import { FilterStore } from '../Context/FilterStore'
+import StyledContainer from '../Styled/StyledContainer'
+import StyledPaginateContainer from '../Styled/StyledPaginateContainer'
+import StyledTitle from '../Styled/StyledTitle'
 
 function FilterableTable () {
   const { requestRecursively, setData } = React.useContext(DataContext)
@@ -44,14 +45,18 @@ function FilterableTable () {
   }
 
   return (
-    <Container>
-      <Title>DEATH STAR 2.0</Title>
-      <Filter filter={filter} setFilter={setFilter} />
-      <Table filter={filter} setFilter={setFilter} />
+    <StyledContainer>
+      <StyledTitle>DEATH STAR 2.0</StyledTitle>
+
+      <FilterStore>
+        <Filter />
+        <Table />
+      </FilterStore>
+
       <StyledPaginateContainer>
         <ReactPaginate
-          previousLabel={'prev'}
-          nextLabel={'next'}
+          previousLabel={'Previous'}
+          nextLabel={'Next'}
           breakLabel={'...'}
           breakClassName={'break-me'}
           pageCount={pageCount}
@@ -63,7 +68,7 @@ function FilterableTable () {
           activeClassName={'active'}
         />
       </StyledPaginateContainer>
-    </Container>
+    </StyledContainer>
   )
 }
 

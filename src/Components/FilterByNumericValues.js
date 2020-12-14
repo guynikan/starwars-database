@@ -1,26 +1,24 @@
 import React from 'react'
-import FiltersContainer from '../Styled/FiltersContainer'
+import { FilterContext } from '../Context/FilterStore'
+import StyledFiltersContainer from '../Styled/StyledFiltersContainer'
 import FilterColumn from './FilterColumn'
 import FilterComparison from './FilterComparison'
 import FilterValue from './FilterValue'
+import Button from './Button'
 
-function FilterByNumericValues ({
-  filter,
-  index,
-  onFilterChange,
-  onClickRemoveFilter,
-  column
-}) {
-  function handleFilter (value, id) {
-    onFilterChange(value, index, id)
+function FilterByNumericValues ({ index, column, filter }) {
+  const { handleFilterChange, removeFilter } = React.useContext(FilterContext)
+
+  function handleRemoveFilter () {
+    removeFilter(index)
   }
 
-  function removeFilter () {
-    onClickRemoveFilter(index)
+  function handleFilter (value, id) {
+    handleFilterChange(id, index, value)
   }
 
   return (
-    <FiltersContainer>
+    <StyledFiltersContainer>
       <FilterColumn
         filter={filter.column}
         onFilterColumnChange={handleFilter}
@@ -31,8 +29,8 @@ function FilterByNumericValues ({
         onFilterComparisonChange={handleFilter}
       />
       <FilterValue filter={filter.value} onFilterValueChange={handleFilter} />
-      <button onClick={removeFilter}>X</button>
-    </FiltersContainer>
+      <Button onClick={handleRemoveFilter}>X</Button>
+    </StyledFiltersContainer>
   )
 }
 

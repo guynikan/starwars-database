@@ -1,49 +1,25 @@
 import React from 'react'
-import Form from '../Styled/Form'
+import FilterContext from '../Context/FilterStore'
+import StyledForm from '../Styled/StyledForm'
 import Button from './Button'
 import FilterByNumericValues from './FilterByNumericValues'
 import SearchBar from './SearchBar'
 
-function Filter ({ filter, setFilter }) {
-  const [disable, setDisable] = React.useState(false)
+function Filter () {
+  const {
+    filter,
+    setFilter,
+    handleFilter,
+    handleFilterChange,
+    addFilter,
+    disable,
+    setDisable
+  } = React.useContext(FilterContext)
 
-  function handleFilterChange (value, item, id) {
-    filter.filters.hasFilter = false
-    filter.filters.filterByNumericValues[item][id] = value
-    setFilter({ ...filter })
-  }
-
-  function handleFilterTextChange (value) {
-    filter.filters.hasFilter = true
-    filter.filters.filterByName.name = value
-    setFilter({ ...filter })
-  }
-
-  function handleAddFilterClick () {
-    filter.filters.filterByNumericValues.push({
-      column: '',
-      comparison: '',
-      value: ''
-    })
-    setFilter({ ...filter })
-  }
-
-  function handleClickFilter () {
-    filter.filters.hasFilter = true
-    setFilter({ ...filter })
-  }
-
-  function removeFilter (index) {
-    filter.filters.filterByNumericValues.splice(index, 1)
-    setFilter({ ...filter })
-  }
-
-  function handleSubmit (e) {
-    e.preventDefault()
-  }
+  const filterByNumericValues = filter.filters.filterByNumericValues
 
   React.useEffect(() => {
-    filter.filters.filterByNumericValues.forEach((filterItem, i, array) => {
+    filterByNumericValues.forEach((filterItem, i, array) => {
       setDisable(() => {
         return (
           filterItem.column !== '' &&
@@ -69,8 +45,9 @@ function Filter ({ filter, setFilter }) {
     }
   }, [filter.filters.filterByNumericValues.length])
 
-  function pushNewArray () {
-    return filter.filters.filterByNumericValues.map((filtro, i, array) => {
+  function addFilters () {
+    debugger
+    return filterByNumericValues.map((filtro, i, array) => {
       let column = array.map(({ column }) => {
         return column
       })
@@ -79,7 +56,6 @@ function Filter ({ filter, setFilter }) {
           key={i}
           index={i}
           onFilterChange={handleFilterChange}
-          onClickRemoveFilter={removeFilter}
           filter={filtro}
           column={column}
         />
@@ -87,18 +63,19 @@ function Filter ({ filter, setFilter }) {
     })
   }
 
+  function handleSubmit (e) {
+    e.preventDefault()
+  }
+
   return (
-    <Form onSubmit={handleSubmit}>
-      <SearchBar
-        filter={filter.filters.filterByName.name}
-        onFilterTextChange={handleFilterTextChange}
-      />
-      {pushNewArray()}
-      <Button disabled={!disable} handleClick={handleClickFilter}>
+    <StyledForm onSubmit={handleSubmit}>
+      <SearchBar />
+      {addFilters()}
+      <Button disabled={!disable} handleClick={handleFilter}>
         Filter
       </Button>
-      {disable && <Button handleClick={handleAddFilterClick}>+</Button>}
-    </Form>
+      {disable && <Button handleClick={addFilter}>+</Button>}
+    </StyledForm>
   )
 }
 

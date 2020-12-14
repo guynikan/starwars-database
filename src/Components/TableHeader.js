@@ -1,9 +1,9 @@
 import React from 'react'
-import TableHead from '../Styled/TableHead'
+import StyledTableHead from '../Styled/StyledTableHead'
 
 function TableHeader () {
   return (
-    <TableHead>
+    <StyledTableHead>
       <tr>
         <th>Name</th>
         <th>Population</th>
@@ -19,7 +19,7 @@ function TableHeader () {
         <th>Edited</th>
         <th>Url</th>
       </tr>
-    </TableHead>
+    </StyledTableHead>
   )
 }
 
