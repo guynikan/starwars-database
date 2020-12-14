@@ -52,10 +52,23 @@ function Table ({ filter }) {
     return slice.map(planet => <TableRow planet={planet} key={planet.name} />)
   }
 
+  function renderFilteringData () {
+    // debugger
+    return data.map(planet => {
+      if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
+        return null
+      if (filter.filters.hasFilter)
+        if (!findMatches(filter, planet)) return null
+
+      return <TableRow planet={planet} key={planet.name} />
+    })
+  }
   return (
     <StyledTable>
       <TableHeader />
-      <tbody>{renderData()}</tbody>
+      <tbody>
+        {filter.filters.hasFilter ? renderFilteringData() : renderData()}
+      </tbody>
     </StyledTable>
   )
 }

@@ -54,6 +54,11 @@ function Filter ({ filter, setFilter }) {
     })
   }, [filter])
 
+  React.useEffect(() => {
+    if (!filter.filters.filterByName.name) filter.filters.hasFilter = false
+    setFilter({ ...filter })
+  }, [filter.filters.filterByName.name])
+
   function pushNewArray () {
     return filter.filters.filterByNumericValues.map((filtro, i, array) => {
       let column = array.map(({ column }) => {
