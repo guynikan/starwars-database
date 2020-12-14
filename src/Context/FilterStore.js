@@ -20,6 +20,9 @@ export const FilterStore = ({ children }) => {
     }
   })
 
+  const filterByNumericValues = filter.filters.filterByNumericValues
+  const filterByName = filter.filters.filterByName
+
   function handleFilter () {
     filter.filters.hasFilter = true
     setFilter({ ...filter })
@@ -28,18 +31,18 @@ export const FilterStore = ({ children }) => {
   function handleFilterChange (item, index, value) {
     debugger
     filter.filters.hasFilter = false
-    filter.filters.filterByNumericValues[index][item] = value
+    filterByNumericValues[index][item] = value
     setFilter({ ...filter })
   }
 
   function handleFilterTextChange (value) {
     filter.filters.hasFilter = true
-    filter.filters.filterByName.name = value
+    filterByName.name = value
     setFilter({ ...filter })
   }
 
   function addFilter () {
-    filter.filters.filterByNumericValues.push({
+    filterByNumericValues.push({
       column: '',
       comparison: '',
       value: ''
@@ -48,7 +51,7 @@ export const FilterStore = ({ children }) => {
   }
 
   function removeFilter (index) {
-    filter.filters.filterByNumericValues.splice(index, 1)
+    filterByNumericValues.splice(index, 1)
     setFilter({ ...filter })
   }
 
