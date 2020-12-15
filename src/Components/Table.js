@@ -55,32 +55,48 @@ function Table () {
     })
   }
 
-  function renderTableRows () {
+  function filterTableRows () {
+    return data.filter(planet => {
+      if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
+        return null
+      if (filter.filters.hasFilter)
+        if (!findMatches(filter, planet)) return null
+
+      return planet
+    })
+  }
+
+  function sortTableRows () {
+    return filterTableRows().sort((a, b) => {
+      const prevPlanet = /^\d{1,}$/g.test(a)
+        ? Number(a)[column]
+        : a[column].toLowerCase()
+      const nextPlanet = /^\d{1,}$/g.test(b)
+        ? Number(b)[column]
+        : b[column].toLowerCase()
+
+      if (sort === 'ASC') {
+        if (prevPlanet < nextPlanet) return -1
+        if (prevPlanet > nextPlanet) return 1
+      }
+      if (sort === 'DESC') {
+        if (prevPlanet > nextPlanet) return -1
+        if (prevPlanet < nextPlanet) return 1
+      }
+
+      return 0
+    })
+  }
+
+  function paginateTableRows () {
     setPageCount(Math.ceil(data.length / PER_PAGE))
-    const slice = data
-      .filter(planet => {
-        if (findNameMatch(filter.filters.filterByName.name, planet) === -1)
-          return null
-        if (filter.filters.hasFilter)
-          if (!findMatches(filter, planet)) return null
+    return sortTableRows().slice(offset, offset + PER_PAGE)
+  }
 
-        return planet
-      })
-      .sort((a, b) => {
-        if (sort === 'ASC') {
-          if (Number(a[column]) < Number(b[column])) return -1
-          if (Number(a[column]) > Number(b[column])) return 1
-        }
-        if (sort === 'DESC') {
-          if (Number(a[column]) > Number(b[column])) return -1
-          if (Number(a[column]) < Number(b[column])) return 1
-        }
-
-        return 0
-      })
-      .slice(offset, offset + PER_PAGE)
-
-    return slice.map(planet => <TableRow planet={planet} key={planet.name} />)
+  function renderTableRows () {
+    return paginateTableRows().map(planet => (
+      <TableRow planet={planet} key={planet.name} />
+    ))
   }
 
   if (error) return <p>Requisição não realizada</p>
