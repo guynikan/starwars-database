@@ -4,7 +4,7 @@ import StyledFiltersContainer from '../Styled/StyledFiltersContainer'
 import FilterColumn from './FilterColumn'
 import FilterComparison from './FilterComparison'
 import FilterValue from './FilterValue'
-import Button from './Button'
+import Button from './Form/Button'
 
 function FilterByNumericValues ({ index, column, filter }) {
   const { handleFilterChange, removeFilter } = React.useContext(FilterContext)
