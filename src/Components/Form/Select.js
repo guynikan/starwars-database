@@ -6,6 +6,10 @@ function Select ({ id, value, handleChange, column, options }) {
     handleChange(target.value, target.id)
   }
 
+  function labelTreatment (label) {
+    return label.charAt(0).toUpperCase() + label.slice(1).replace('_', ' ')
+  }
+
   return (
     <StyledSelect id={id} value={value} onChange={onChange}>
       <option value='' disabled>
@@ -18,14 +22,14 @@ function Select ({ id, value, handleChange, column, options }) {
 
           return (
             <option key={option} disabled={isDisabled} value={option}>
-              {option.charAt(0).toUpperCase() + option.slice(1)}
+              {labelTreatment(option)}
             </option>
           )
         } else {
           let label
           switch (option) {
             case '===':
-              label = 'Equal To'
+              label = 'Equal to'
               break
             case '>':
               label = 'Greater than'
