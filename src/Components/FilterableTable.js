@@ -11,7 +11,6 @@ import StyledTitle from '../Styled/StyledTitle'
 
 function FilterableTable () {
   const { requestRecursively, setData } = React.useContext(DataContext)
-
   const { offset, setCurrentPage, pageCount } = React.useContext(
     PaginateContext
   )
@@ -23,7 +22,6 @@ function FilterableTable () {
   }, [offset])
 
   function handlePageClick ({ selected: selectedPage }) {
-    debugger
     setCurrentPage(selectedPage)
   }
 
