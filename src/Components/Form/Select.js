@@ -13,10 +13,9 @@ function Select ({ id, value, handleChange, column, options }) {
   return (
     <StyledSelect id={id} value={value} onChange={onChange}>
       <option value='' disabled>
-        {id.charAt(0).toUpperCase() + id.slice(1)}
+        {labelTreatment(id)}
       </option>
       {options.map(option => {
-        debugger
         if (id === 'column' || id === 'sort_column') {
           const isDisabled = id === 'column' ? column.includes(option) : false
 
