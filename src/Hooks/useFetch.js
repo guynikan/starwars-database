@@ -23,7 +23,6 @@ function useFetch () {
     requestRecursively,
     data,
     setData,
-    error,
     loading
   }
 }
