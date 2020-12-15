@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Sistema interno da Estrela da Morte.
+
+![image](https://user-images.githubusercontent.com/36284169/102150841-445a3380-3e50-11eb-9f65-41b2b8b5e288.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
