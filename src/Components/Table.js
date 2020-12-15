@@ -99,7 +99,6 @@ function Table () {
     ))
   }
 
-  if (error) return <p>Requisição não realizada</p>
   if (loading) return <div>Carregando...</div>
   return (
     <StyledTable>

@@ -12,7 +12,6 @@ function TableRow ({ planet }) {
       <td>{planet.orbital_period}</td>
       <td>{planet.surface_water}</td>
       <td>{planet.terrain}</td>
-      {/* <td>{planet.films}</td> */}
       <td>{planet.created}</td>
       <td>{planet.edited}</td>
       <td>{planet.url}</td>

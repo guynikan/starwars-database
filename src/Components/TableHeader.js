@@ -14,7 +14,6 @@ function TableHeader () {
         <th>Orbital Period</th>
         <th>Surface Water</th>
         <th>Terrain</th>
-        {/* <th>Filmes</th> */}
         <th>Created</th>
         <th>Edited</th>
         <th>Url</th>

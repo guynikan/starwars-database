@@ -2,7 +2,6 @@ import React from 'react'
 
 function useFetch () {
   const [data, setData] = React.useState([])
-  const [error, setError] = React.useState(null)
   const [loading, setLoading] = React.useState(null)
 
   async function requestRecursively (url) {
