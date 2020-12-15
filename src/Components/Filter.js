@@ -3,6 +3,7 @@ import FilterContext from '../Context/FilterStore'
 import StyledForm from '../Styled/StyledForm'
 import Button from './Button'
 import FilterByNumericValues from './FilterByNumericValues'
+import Order from './Order'
 import SearchBar from './SearchBar'
 
 function Filter () {
@@ -46,7 +47,6 @@ function Filter () {
   }, [filter.filters.filterByNumericValues.length])
 
   function addFilters () {
-    debugger
     return filterByNumericValues.map((filtro, i, array) => {
       let column = array.map(({ column }) => {
         return column
@@ -70,6 +70,7 @@ function Filter () {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <SearchBar />
+      <Order />
       {addFilters()}
       <Button disabled={!disable} handleClick={handleFilter}>
         Filter

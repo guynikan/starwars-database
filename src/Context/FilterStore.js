@@ -16,7 +16,12 @@ export const FilterStore = ({ children }) => {
           comparison: '',
           value: ''
         }
-      ]
+      ],
+
+      order: {
+        column: 'name',
+        sort: 'ASC'
+      }
     }
   })
 
@@ -38,6 +43,16 @@ export const FilterStore = ({ children }) => {
   function handleFilterTextChange (value) {
     filter.filters.hasFilter = true
     filterByName.name = value
+    setFilter({ ...filter })
+  }
+
+  function handleOrderColumn (value) {
+    filter.filters.order.column = value
+    setFilter({ ...filter })
+  }
+
+  function handleOrderSort (value) {
+    filter.filters.order.sort = value
     setFilter({ ...filter })
   }
 
@@ -63,6 +78,8 @@ export const FilterStore = ({ children }) => {
         handleFilter,
         handleFilterChange,
         handleFilterTextChange,
+        handleOrderColumn,
+        handleOrderSort,
         addFilter,
         removeFilter,
         disable,
