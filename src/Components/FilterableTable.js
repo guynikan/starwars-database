@@ -16,24 +16,7 @@ function FilterableTable () {
     PaginateContext
   )
 
-  const [filter, setFilter] = React.useState({
-    filters: {
-      hasFilter: false,
-      filterByName: {
-        name: ''
-      },
-      filterByNumericValues: [
-        {
-          column: '',
-          comparison: '',
-          value: ''
-        }
-      ]
-    }
-  })
-
   React.useEffect(() => {
-    console.log('fez o request')
     requestRecursively('https://swapi-trybe.herokuapp.com/api/planets/').then(
       data => setData(data)
     )
