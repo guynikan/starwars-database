@@ -1,18 +1,19 @@
 import React from 'react'
 import { NumericInput } from '../Styled/StyledInput'
+import Input from './Form/Input'
 
 function FilterValue ({ filter, onFilterValueChange }) {
-  function handleFilterValue ({ target }) {
-    onFilterValueChange(target.value, target.id)
+  function handleFilterValue (value, id) {
+    onFilterValueChange(value, id)
   }
   return (
-    <NumericInput
+    <Input
       required
-      id='value'
-      placeholder='Enter numeric value'
-      type='number'
+      id={'value'}
+      placeholder={'Enter numeric value'}
+      type={'number'}
       value={filter}
-      onChange={handleFilterValue}
+      handleChange={handleFilterValue}
     />
   )
 }

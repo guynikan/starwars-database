@@ -1,20 +1,23 @@
 import React from 'react'
 import { FilterContext } from '../Context/FilterStore'
-import { SearchInput } from '../Styled/StyledInput'
+import Input from './Form/Input'
+
 function SearchBar () {
   const { filter, handleFilterTextChange } = React.useContext(FilterContext)
   const value = filter.filters.filterByName.name
 
-  function handleChange ({ target }) {
-    handleFilterTextChange(target.value)
+  function handleChange (value) {
+    handleFilterTextChange(value)
   }
 
   return (
-    <SearchInput
-      type='text'
-      placeholder='Search...'
+    <Input
+      id={'search'}
+      name={'search'}
+      placeholder={'Search...'}
+      type={'text'}
       value={value}
-      onChange={handleChange}
+      handleChange={handleChange}
     />
   )
 }
