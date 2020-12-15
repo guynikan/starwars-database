@@ -1,51 +1,49 @@
 import React from 'react'
 import FilterContext from '../Context/FilterStore'
-import StyledSelect from '../Styled/StyledSelect'
+import Radio from './Form/Radio'
+import Select from './Form/Select'
 
 function Order () {
   const { filter, handleOrderColumn, handleOrderSort } = React.useContext(
     FilterContext
   )
 
-  function handleColumn ({ target }) {
-    handleOrderColumn(target.value)
+  const columns = [
+    'name',
+    'population',
+    'diameter',
+    'climate',
+    'rotation_period',
+    'orbital_period',
+    'surface_water',
+    'terrain',
+    'created',
+    'edited',
+    'url'
+  ]
+
+  function handleColumn (value) {
+    handleOrderColumn(value)
   }
 
-  function handleSort ({ target }) {
-    handleOrderSort(target.value)
+  function handleSort (value) {
+    handleOrderSort(value)
   }
 
   return (
     <>
-      <StyledSelect
-        required
+      <Select
+        id='sort_column'
         value={filter.filters.order.column}
-        id='column'
-        onChange={handleColumn}
-      >
-        <option value='' disabled>
-          Column
-        </option>
-        <option value='name'>Name</option>
-        <option value='population'>Population</option>
-        <option value='diameter'>Diameter</option>
-        <option value='climate'>Climate</option>
-        <option value='rotation_period'>Rotation Period</option>
-        <option value='orbital_period'>Orbital Period</option>
-        <option value='surface_water'>Surface Water</option>
-        <option value='terrain'>Terrain</option>
-        <option value='created'>Created</option>
-        <option value='edited'>Edited</option>
-        <option value='url'>Url</option>
-      </StyledSelect>
-      <label style={{ alignSelf: 'center' }}>
-        <input type='radio' value='ASC' name='order' onChange={handleSort} />
-        ASC
-      </label>
-      <label style={{ alignSelf: 'center' }}>
-        <input type='radio' value='DESC' name='order' onChange={handleSort} />
-        DESC
-      </label>
+        handleChange={handleColumn}
+        options={columns}
+      ></Select>
+
+      <Radio
+        name={'order'}
+        handleChange={handleSort}
+        options={['ASC', 'DESC']}
+      />
     </>
   )
 }
