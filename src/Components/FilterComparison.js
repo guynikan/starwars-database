@@ -1,25 +1,20 @@
 import React from 'react'
-import StyledSelect from '../Styled/StyledSelect'
+import Select from './Form/Select'
 
 function FilterComparison ({ filter, onFilterComparisonChange }) {
-  function handleFilterComparison ({ target }) {
-    onFilterComparisonChange(target.value, target.id)
+  const operators = ['===', '>', '<']
+
+  function handleFilterComparison (value, id) {
+    onFilterComparisonChange(value, id)
   }
 
   return (
-    <StyledSelect
-      required
+    <Select
+      id={'comparison'}
       value={filter}
-      id='comparison'
-      onChange={handleFilterComparison}
-    >
-      <option value='' disabled>
-        Comparison
-      </option>
-      <option value='==='>Equal to</option>
-      <option value='<'>Less than</option>
-      <option value='>'>Greater than</option>
-    </StyledSelect>
+      handleChange={handleFilterComparison}
+      options={operators}
+    />
   )
 }
 
