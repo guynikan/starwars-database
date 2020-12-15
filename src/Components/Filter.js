@@ -3,7 +3,7 @@ import FilterContext from '../Context/FilterStore'
 import StyledForm from '../Styled/StyledForm'
 import Button from './Form/Button'
 import FilterByNumericValues from './FilterByNumericValues'
-import Order from './Order'
+import FilterOrder from './FilterOrder'
 import SearchBar from './SearchBar'
 
 function Filter () {
@@ -70,7 +70,7 @@ function Filter () {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <SearchBar />
-      <Order />
+      <FilterOrder />
       {addFilters()}
       <Button disabled={!disable} handleClick={handleFilter}>
         Filter
