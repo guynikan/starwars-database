@@ -18,6 +18,7 @@ function Filter () {
   } = React.useContext(FilterContext)
 
   const filterByNumericValues = filter.filters.filterByNumericValues
+  const filterByName = filter.filters.filterByName
 
   React.useEffect(() => {
     filterByNumericValues.forEach((filterItem, i, array) => {
@@ -33,7 +34,7 @@ function Filter () {
   }, [filter])
 
   React.useEffect(() => {
-    if (!filter.filters.filterByName.name) {
+    if (!filterByName.name) {
       filter.filters.hasFilter = false
       setFilter({ ...filter })
     }
